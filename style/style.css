@@ -1,0 +1,60 @@
+*,
+*::after,
+*::before {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule {
+  display: flex;
+  padding: 30px;
+  background: #408080;
+  border-radius: 5px;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.content {
+  flex: 1;
+}
+
+.content:not(:last-child) {
+  margin-right: 30px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #ffffff;
+  user-select: none;
+}
+
+.items-input {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.items-drop {
+  height: 10px;
+  transition: background 0.15s, height 0.15s;
+}
+
+.items-drop-active {
+  height: 20px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.button__items {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
