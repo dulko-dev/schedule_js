@@ -30,8 +30,13 @@
   user-select: none;
 }
 
+.list {
+  min-height: 10px;
+}
+
 .items-input {
   padding: 10px 15px;
+  margin-bottom:5px;
   box-sizing: border-box;
   background: #ffffff;
   border-radius: 5px;
