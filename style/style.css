@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.items-input.drag {
+  display: none;
+}
+
 .items-drop {
   height: 10px;
   transition: background 0.15s, height 0.15s;

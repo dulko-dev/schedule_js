@@ -1,39 +1,49 @@
 const item_input = document.querySelectorAll(".items-input");
 const lists = document.querySelectorAll(".list");
 
-let draggedItem = null;
-
-for (let x = 0; x < item_input.length; x++) {
-  const item = item_input[x];
-
-  item.addEventListener("dragstart", () => {
-    console.log("dragged");
-    draggedItem = item;
-    setTimeout(function () {
-      item.style.display = "none";
+item_input.forEach((draggable) => {
+  draggable.addEventListener("dragstart", () => {
+    setTimeout(() => {
+      draggable.classList.add("drag");
     }, 0);
   });
 
-  item.addEventListener("dragend", () => {
-    console.log("dragend");
-    setTimeout(function () {
-      draggedItem.style.display = "block";
+  draggable.addEventListener("dragend", () => {
+    setTimeout(() => {
+      draggable.classList.remove("drag");
     }, 0);
   });
+});
 
-  for (let z = 0; z < lists.length; z++) {
-    const list = lists[z];
+lists.forEach((content) => {
+  content.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    const placeElement = placeOfElement(content, event.clientY);
+    const dragging = document.querySelector(".drag");
+    if (placeOfElement == null) {
+      content.appendChild(dragging);
+    } else {
+      content.insertBefore(dragging, placeElement);
+    }
+  });
+});
 
-    list.addEventListener("dragover", (e) => {
-      e.preventDefault();
-    });
+function placeOfElement(content, y) {
+  const elements = [...content.querySelectorAll(".items-input:not(.drag)")];
 
-    list.addEventListener("dragenter", (e) => {
-      e.preventDefault();
-    });
-
-    list.addEventListener("drop", (e) => {
-      list.append(draggedItem);
-    });
-  }
+  return elements.reduce(
+    (close, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > close.offset) {
+        return {
+          offset: offset,
+          element: child,
+        };
+      } else {
+        return close;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
