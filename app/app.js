@@ -1,7 +1,36 @@
-const item_input = document.querySelectorAll(".items-input");
 const lists = document.querySelectorAll(".list");
+const btnAdd = document.querySelectorAll(".button__items");
+const items = document.querySelectorAll(".items-input");
 
-item_input.forEach((draggable) => {
+[...btnAdd].map((el) => {
+  el.addEventListener("click", (e) => {
+    const newElement = document.createElement("div");
+    newElement.classList.add("items-input");
+    newElement.setAttribute("draggable", "true");
+    newElement.innerText = "New Text";
+    const parent = e.path[1].children[1];
+    parent.appendChild(newElement);
+
+    const items = document.querySelectorAll(".items-input");
+
+    items.forEach((draggable) => {
+      draggable.addEventListener("dragstart", () => {
+        setTimeout(() => {
+          draggable.classList.add("drag");
+        }, 0);
+      });
+
+      draggable.addEventListener("dragend", () => {
+        setTimeout(() => {
+          draggable.classList.remove("drag");
+        }, 0);
+      });
+    });
+    
+  });
+});
+
+items.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
     setTimeout(() => {
       draggable.classList.add("drag");
