@@ -35,8 +35,10 @@
 }
 
 .items-input {
+  list-style-type: none;
+  position: relative;
   padding: 10px 15px;
-  margin-bottom:5px;
+  margin-bottom: 5px;
   box-sizing: border-box;
   background: #ffffff;
   border-radius: 5px;
@@ -45,6 +47,24 @@
 
 .items-input.drag {
   display: none;
+}
+
+.trash {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+path{
+  pointer-events: none;
+}
+
+.edit {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .items-drop {
