@@ -38,9 +38,6 @@ lists.forEach((list) => {
   list.addEventListener("click", itemsOption);
 });
 
-lists.forEach((list) => {
-  list.addEventListener("click", confirmChange);
-});
 
 // functions
 function itemsOption(e) {
@@ -53,17 +50,24 @@ function itemsOption(e) {
 
   if (item.classList[3] === "edit") {
     const task = item.parentElement;
+    const correct = document.createElement("i");
+    correct.classList.add("correct");
     task.setAttribute("contenteditable", "true");
-    task.children[1].innerHTML = '<i class="fas fa-check-circle"></i>';
+    task.children[1].style.display = "none";
     task.children[0].style.display = "none";
-    task.classList.add("editable");
+    task.appendChild(correct);
+    task.children[2].innerHTML = '<i class="fas fa-check-circle"></i>';
+    task.children[2].style.display = "block";
     task.focus();
   }
-}
 
-function confirmChange(e) {
-  const item = e.target;
-  console.log(item)
+  if (item.classList[1] === "fa-check-circle") {
+    const task = item.closest(".items-input");
+    task.removeAttribute("contenteditable");
+    task.children[1].style.display = "block";
+    task.children[0].style.display = "block";
+    task.children[2].style.display = "none";
+  }
 }
 
 function addTask(e) {

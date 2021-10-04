@@ -67,6 +67,13 @@ path{
   transform: translateY(-50%);
 }
 
+.correct {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .items-drop {
   height: 10px;
   transition: background 0.15s, height 0.15s;
