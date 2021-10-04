@@ -8,6 +8,7 @@
 
 .schedule {
   display: flex;
+  justify-content: space-between;
   padding: 30px;
   background: #408080;
   border-radius: 5px;
@@ -16,7 +17,7 @@
 }
 
 .content {
-  flex: 1;
+  width: calc(95% / 3);
 }
 
 .content:not(:last-child) {
@@ -39,10 +40,18 @@
   position: relative;
   padding: 10px 15px;
   margin-bottom: 5px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   background: #ffffff;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #9fe0ff;
+}
+
+.items-input > span {
+  outline: none;
+  display: block;
+  max-width: 90%;
+  word-wrap: break-word;
 }
 
 .items-input.drag {
@@ -56,7 +65,7 @@
   transform: translateY(-50%);
 }
 
-path{
+path {
   pointer-events: none;
 }
 

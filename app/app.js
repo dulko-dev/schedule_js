@@ -38,7 +38,6 @@ lists.forEach((list) => {
   list.addEventListener("click", itemsOption);
 });
 
-
 // functions
 function itemsOption(e) {
   const item = e.target;
@@ -50,40 +49,51 @@ function itemsOption(e) {
 
   if (item.classList[3] === "edit") {
     const task = item.parentElement;
-    const correct = document.createElement("i");
-    correct.classList.add("correct");
-    task.setAttribute("contenteditable", "true");
+    task.style.backgroundColor = "#9fe0ff";
+    task.children[0].setAttribute("contenteditable", "true");
+    task.children[0].style.cursor = "text";
+    task.setAttribute("draggable", "false");
     task.children[1].style.display = "none";
-    task.children[0].style.display = "none";
-    task.appendChild(correct);
-    task.children[2].innerHTML = '<i class="fas fa-check-circle"></i>';
-    task.children[2].style.display = "block";
-    task.focus();
+    task.children[2].style.display = "none";
+    task.children[3].style.display = "block";
+    task.children[0].focus();
   }
 
-  if (item.classList[1] === "fa-check-circle") {
+  if (item.classList[3] === "correct") {
     const task = item.closest(".items-input");
-    task.removeAttribute("contenteditable");
+    if (task.children[0].innerText.trim().length === 0) return;
+    task.style.backgroundColor = "#ffff";
+    task.children[0].removeAttribute("contenteditable");
+    task.children[0].style.cursor = "pointer";
+    task.setAttribute("draggable", "true");
     task.children[1].style.display = "block";
-    task.children[0].style.display = "block";
-    task.children[2].style.display = "none";
+    task.children[2].style.display = "block";
+    task.children[3].style.display = "none";
   }
 }
 
 function addTask(e) {
   const parent = e.path[1].children[1];
   const newElement = document.createElement("li");
+  const newSpan = document.createElement("span");
   const trashIcon = document.createElement("i");
   const editIcon = document.createElement("i");
+  const correctIcon = document.createElement("i");
   editIcon.classList.add("fas", "fa-edit", "edit");
   trashIcon.classList.add("fas", "fa-trash", "trash");
+  correctIcon.classList.add("fas", "fa-check-circle", "correct");
+  trashIcon.style.display = "none";
+  editIcon.style.display = "none";
+  newSpan.style.cursor = "text";
   newElement.classList.add("items-input");
-  newElement.setAttribute("draggable", "true");
-
-  newElement.innerText = "New Item";
+  newElement.appendChild(newSpan);
+  newSpan.setAttribute("contenteditable", "true");
+  newElement.setAttribute("draggable", "false");
   newElement.appendChild(trashIcon);
   newElement.appendChild(editIcon);
+  newElement.appendChild(correctIcon);
   parent.appendChild(newElement);
+  newSpan.focus();
 
   const items = document.querySelectorAll(".items-input");
   items.forEach((draggable) => {
