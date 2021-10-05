@@ -1,24 +1,56 @@
 const lists = document.querySelectorAll(".list");
 const btnAdd = document.querySelectorAll(".button__items");
-const items = document.querySelectorAll(".items-input");
+const l1 = document.querySelector(".l1");
+const l2 = document.querySelector(".l2");
+const l3 = document.querySelector(".l3");
+const disk = document.querySelector(".saveDisk");
+const infoSave = document.querySelector(".infoSave");
+
+if (localStorage.getItem("l1") !== null) {
+  l1.innerHTML = localStorage.getItem("l1");
+}
+if (localStorage.getItem("l2") !== null) {
+  l2.innerHTML = localStorage.getItem("l2");
+}
+if (localStorage.getItem("l3") !== null) {
+  l3.innerHTML = localStorage.getItem("l3");
+}
+
+(() => {
+  setTimeout(() => {
+    const items = document.querySelectorAll(".items-input");
+    items.forEach((draggable) => {
+      draggable.addEventListener("dragstart", () => {
+        setTimeout(() => {
+          draggable.classList.add("drag");
+        }, 0);
+      });
+
+      draggable.addEventListener("dragend", () => {
+        setTimeout(() => {
+          draggable.classList.remove("drag");
+        }, 0);
+      });
+    });
+  }, 0);
+})();
+
+const interval = setInterval(() => {
+  localStorage.setItem("l1", l1.innerHTML);
+  localStorage.setItem("l2", l2.innerHTML);
+  localStorage.setItem("l3", l3.innerHTML);
+  infoSave.style.display = "block";
+  setTimeout(() => {
+    infoSave.style.display = "none";
+  }, 2000);
+  return () => {
+    clearInterval(interval);
+  };
+}, 30000);
 
 // event listener
 [...btnAdd].map((el) => {
   el.addEventListener("click", addTask);
-});
-
-items.forEach((draggable) => {
-  draggable.addEventListener("dragstart", () => {
-    setTimeout(() => {
-      draggable.classList.add("drag");
-    }, 0);
-  });
-
-  draggable.addEventListener("dragend", () => {
-    setTimeout(() => {
-      draggable.classList.remove("drag");
-    }, 0);
-  });
 });
 
 lists.forEach((content) => {
@@ -38,7 +70,16 @@ lists.forEach((list) => {
   list.addEventListener("click", itemsOption);
 });
 
+disk.addEventListener("click", save);
+
 // functions
+function save() {
+  localStorage.setItem("l1", l1.innerHTML);
+  localStorage.setItem("l2", l2.innerHTML);
+  localStorage.setItem("l3", l3.innerHTML);
+  alert("Your progress has been saved");
+}
+
 function itemsOption(e) {
   const item = e.target;
 

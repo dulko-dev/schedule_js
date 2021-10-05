@@ -19,30 +19,31 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <link href="./style/style.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
   </head>
   <body>
     <section class="schedule">
       <div class="content">
         <div class="title">Not Started</div>
-        <ul class="list">
-        </ul>
+        <ul class="list l1"></ul>
         <button class="button__items" type="button">Add Item</button>
       </div>
       <div class="content">
         <div class="title">In Progress</div>
-        <ul class="list">
-        </ul>
+        <ul class="list l2"></ul>
         <button class="button__items" type="button">Add Item</button>
       </div>
       <div class="content">
         <div class="title">Done</div>
-        <ul class="list">
-        </ul>
+        <ul class="list l3"></ul>
         <button class="button__items" type="button">Add Item</button>
       </div>
+      <div class="saveDisk">
+        <i class="fas fa-save"></i>
+      </div>
+      <p class="infoSave">saving progress...</p>
     </section>
 
-    <script src="./app/app.js" type="module"></script>
+    <script src="./app.js" type="module" defer></script>
   </body>
 </html>

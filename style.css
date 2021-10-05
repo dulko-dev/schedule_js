@@ -7,6 +7,7 @@
 }
 
 .schedule {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 30px;
@@ -102,4 +103,27 @@ path {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.saveDisk {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.saveDisk:hover {
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.infoSave {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  color: #030091;
+  font-size: 20px;
 }
